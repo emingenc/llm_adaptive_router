@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "llm_adaptive_router"
+version = "0.1.0"
+authors = [
+  { name="Emin Genc", email="emingench@gmail.com" },
+]
+description = "An adaptive router for LLM model selection"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "langchain==0.3.1",
+    "langchain-community==0.3.1",
+    "langchain-core==0.3.8",
+    "langchain-openai==0.2.1",
+    "langchain-text-splitters==0.3.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/emingenc/llm_adaptive_router"
+"Bug Tracker" = "https://github.com/emingenc/llm_adaptive_router/issues"
+
+
+[tool.hatch.build.targets.wheel]
+packages = ["llm_adaptive_router"]
