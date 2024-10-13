@@ -2,7 +2,6 @@ from typing import Dict, Any
 from .models import RouteMetadata
 
 def create_route_metadata(
-    model: str,
     invoker: Any,
     capabilities: list[str],
     cost: float = 0.0,
@@ -11,7 +10,6 @@ def create_route_metadata(
     additional_info: Dict[str, Any] = {}
 ) -> RouteMetadata:
     return RouteMetadata(
-        model=model,
         invoker=invoker,
         capabilities=capabilities,
         cost=cost,

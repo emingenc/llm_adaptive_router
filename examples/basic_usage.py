@@ -1,28 +1,28 @@
-from llm_adaptive_router import AdaptiveRouter, create_route_metadata
-from langchain_community.vectorstores import Chroma
+from llm_adaptive_router import AdaptiveRouter, RouteMetadata
+from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
+from dotenv import load_dotenv
+load_dotenv()
 
-gpt_3_5_turbo = ChatOpenAI("gpt-3.5-turbo", temperature=0)
-codex = ChatOpenAI("codex", temperature=0)
-gpt_4 = ChatOpenAI("gpt-4o", temperature=0)
+gpt_3_5_turbo = ChatOpenAI(model="gpt-3.5-turbo")
+mini = ChatOpenAI(model="gpt-4o-mini")
+gpt_4 = ChatOpenAI(model="gpt-4")
 
 routes = {
-    "general": create_route_metadata(
-        model="gpt-3.5-turbo",
+    "general": RouteMetadata(
         invoker=gpt_3_5_turbo,
         capabilities=["general knowledge"],
         cost=0.002,
         example_sentences=["What is the capital of France?", "Explain photosynthesis."]
     ),
-    "code": create_route_metadata(
-        model="codex",
-        invoker=codex,
-        capabilities=["code generation", "debugging"],
-        cost=0.005,
-        example_sentences=["Write a Python function to sort a list.", "Debug this JavaScript code."]
+    "mini": RouteMetadata(
+        invoker=mini,
+        capabilities=["general knowledge"],
+        cost=0.002,
+        example_sentences=["What is the capital of France?", "Explain photosynthesis."]
+        
     ),
-    "math": create_route_metadata(
-        model="gpt-4",
+    "math": RouteMetadata(
         invoker=gpt_4,
         capabilities=["advanced math", "problem solving"],
         cost=0.01,
@@ -30,7 +30,7 @@ routes = {
     )
 }
 
-llm = ChatOpenAI("gpt-3.5-turbo", temperature=0)
+llm = ChatOpenAI(model="gpt-3.5-turbo")
 
 router = AdaptiveRouter(
     vectorstore=Chroma(embedding_function=OpenAIEmbeddings()),
@@ -39,9 +39,11 @@ router = AdaptiveRouter(
     routes=routes
 )
 
-query = "Write a Python function to calculate the Fibonacci sequence"
+query = "How are you"
+query2 = "Write a Python function to hello world"
 selected_model_route = router.route(query)
-selected_model_name = selected_model_route.model
+selected_model_name = selected_model_route
+print(selected_model_name)
 invoker = selected_model_route.invoker
 response = invoker.invoke(query)
 
