@@ -3,7 +3,7 @@ from .models import RouteMetadata, QueryResult, RouteSelection
 from .utils import create_route_metadata
 from .prompts import router_prompt_template
 
-__version__ = "0.1.10"
+__version__ = "0.1.11"
 
 __all__ = [
     "AdaptiveRouter",

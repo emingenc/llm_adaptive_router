@@ -3,7 +3,7 @@ from typing import List, Callable, Any, Dict, Optional
 
 
 class RouteMetadata(BaseModel):
-    invoker: Callable = Field(..., exclude=True)  # Required field
+    invoker: Any = Field(..., exclude=True)  # Required field
     name: Optional[str] = None
     capabilities: Optional[List[str]] = None
     cost: Optional[float] = None

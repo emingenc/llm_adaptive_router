@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="llm_adaptive_router",
-    version="0.1.10",
+    version="0.1.11",
     author="Emin Genc",
     author_email="emingench@gmail.com",
     description="An adaptive router for LLM model selection",
