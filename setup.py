@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="llm_adaptive_router",
-    version="0.1.11",
+    version="0.1.13",
     author="Emin Genc",
     author_email="emingench@gmail.com",
     description="An adaptive router for LLM model selection",
@@ -24,11 +24,11 @@ setup(
     ],
     python_requires=">=3.9",
     install_requires=[
-        "langchain==0.3.1",
-        "langchain-community==0.3.1",
-        "langchain-core==0.3.8",
-        "langchain-openai==0.2.1",
-        "langchain-text-splitters==0.3.0",
+        "langchain>=0.3.1",
+        "langchain-community>=0.3.1",
+        "langchain-core>=0.3.8",
+        "langchain-openai>=0.2.1",
+        "langchain-text-splitters>=0.3.0",
     ],
     keywords=["llm", "router", "adaptive", "llm-adaptive-router", "llm-router"],
     project_urls={
